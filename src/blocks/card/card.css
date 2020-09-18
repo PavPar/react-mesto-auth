@@ -1,0 +1,30 @@
+@import url(./__title/card__title.css);
+@import url(./__image/card__image.css);
+@import url(./__button/card__button.css);
+@import url(./__button/_type/card__button_type-like.css);
+@import url(./__button/_type/card__button_type-delete.css);
+@import url(./__button/_state/card__button_state-selected.css);
+@import url(./__button/_state/card__button_state-invisible.css);
+
+.card {
+    position: relative;
+    width: 282px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border-radius: 10px;
+    color: #000000;
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: "image image" "title button";
+    gap: 25px;
+    padding-bottom: 25px;
+}
+
+.card__like-counter {
+    position: absolute;
+    font-size: 13px;
+    line-height: 16px;
+    bottom: 20px;
+    right: 26px;
+    z-index: 2;
+}
