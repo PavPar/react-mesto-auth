@@ -7,14 +7,11 @@ import PopupWithForm from './popupWithForm/PopupWithForm';
 import ImagePopup from './imagePopup/ImagePopup';
 
 function App() {
-    // function setPopupVisible(popupSelector) {
-    //     const popup = document.querySelector(popupSelector);
-    //     popup.classList.remove('popup_visibility-hidden');
-    // }
+
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-    
+
 
 
     function handleEditAvatarClick(event) {
@@ -35,10 +32,10 @@ function App() {
             <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} ></Main>
             <Footer></Footer>
 
-            {/* <PopupWithForm name="confirm" title="Вы уверены?"></PopupWithForm> */}
-            {isEditProfilePopupOpen && <PopupWithForm name="profile" title="Редактировать профиль"></PopupWithForm>}
-            {isAddPlacePopupOpen && <PopupWithForm name="card" title="Новое место"></PopupWithForm>}
-            {isEditAvatarPopupOpen && <PopupWithForm name="avatar" title="Обновить аватар"></PopupWithForm>}
+            <PopupWithForm isOpen={false} name="confirm" title="Вы уверены?"></PopupWithForm>
+            <PopupWithForm isOpen={isEditAvatarPopupOpen} name="avatar" title="Обновить аватар"></PopupWithForm>
+            <PopupWithForm isOpen={isEditProfilePopupOpen} name="profile" title="Редактировать профиль"></PopupWithForm>
+            <PopupWithForm isOpen={isAddPlacePopupOpen} name="card" title="Новое место"></PopupWithForm>
             <ImagePopup></ImagePopup>
 
 

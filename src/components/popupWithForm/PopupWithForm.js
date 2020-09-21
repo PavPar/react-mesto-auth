@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function PopupWithForm({name, title, children}) {
+export default function PopupWithForm({name, title,isOpen, children}) {
 
 
     return (
-        <section className= {`popup popup-${name}`}>
+        <section className= {`popup ${!isOpen && 'popup_visibility-hidden'} popup-${name}`}>
             <form className={`popup__window popup_type-${name}`} novalidate name={`popup__window popup_type-${name}`}>
                 <h2 className="popup__title">{title}</h2>
 
