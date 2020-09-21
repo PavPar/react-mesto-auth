@@ -5,6 +5,7 @@ import Main from './main/Main';
 import Footer from './footer/Footer';
 import PopupWithForm from './popupWithForm/PopupWithForm';
 import ImagePopup from './imagePopup/ImagePopup';
+import Api from './utils/Api';
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
-    function closeAllPopups(event){
+    function closeAllPopups(event) {
         event.preventDefault();
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
@@ -34,7 +35,17 @@ function App() {
     return (
         <>
             <Header src={headerLogo}></Header>
-            <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} ></Main>
+            
+            <Main 
+            onEditProfile={handleEditProfileClick} 
+            onAddPlace={handleAddPlaceClick} 
+            onEditAvatar={handleEditAvatarClick}
+            userName={}
+            userDescription={}
+            userAvatar={}
+            >
+
+            </Main>
             <Footer></Footer>
 
             <PopupWithForm onClose={closeAllPopups} isOpen={false} name="confirm" title="Вы уверены?"></PopupWithForm>
