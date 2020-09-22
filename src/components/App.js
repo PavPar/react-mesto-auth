@@ -5,7 +5,6 @@ import Main from './main/Main';
 import Footer from './footer/Footer';
 import PopupWithForm from './popupWithForm/PopupWithForm';
 import ImagePopup from './imagePopup/ImagePopup';
-import Api from './utils/Api';
 
 function App() {
 
@@ -55,15 +54,7 @@ function App() {
 
 
 
-            <template id="card-template">
-                <div className="card">
-                    <img draggable="false" className="card__image"></img>
-                    <h2 className="card__title"></h2>
-                    <button className="card__button card__button_type-like"></button>
-                    <p className="card__like-counter"></p>
-                    <button className="card__button card__button_type-delete"></button>
-                </div>
-            </template>
+         
         </>
     );
 }
