@@ -32,17 +32,16 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
+
+
     return (
         <>
             <Header src={headerLogo}></Header>
-            
-            <Main 
-            onEditProfile={handleEditProfileClick} 
-            onAddPlace={handleAddPlaceClick} 
-            onEditAvatar={handleEditAvatarClick}
-            userName={}
-            userDescription={}
-            userAvatar={}
+
+            <Main
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
             >
 
             </Main>

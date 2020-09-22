@@ -6,7 +6,7 @@ export default function PopupWithForm({name, title,isOpen,onClose, children}) {
 
     return (
         <section className= {`popup ${!isOpen && 'popup_visibility-hidden'} popup-${name}`}>
-            <form className={`popup__window popup_type-${name}`} novalidate name={`popup__window popup_type-${name}`}>
+            <form className={`popup__window popup_type-${name}`} noValidate name={`popup__window popup_type-${name}`}>
                 <h2 className="popup__title">{title}</h2>
 
 
