@@ -25,7 +25,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
                 console.log(err);
             })
 
-    })
+    },[])
 
     return (
         <main className="content">
