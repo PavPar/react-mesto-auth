@@ -2,7 +2,7 @@ import React from 'react';
 import api from '../utils/Api';
 import Card from '../card/Card';
 
-export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar,onCardClick }) {
 
     const [userName, setUserName] = React.useState('');
     const [userAvatar, setUserAvatar] = React.useState('');
@@ -43,8 +43,8 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
             </section>
             <section className="cards">
                 {
-                    cards.map((card,i) => {
-                        return(<Card key={i} title={card['name']} image={card['link']}></Card>);
+                    cards.map((card) => {
+                        return(<Card key={card['_id']} card={card} onCardClick={onCardClick}></Card>);
                     })
                 }
             </section>

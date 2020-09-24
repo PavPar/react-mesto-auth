@@ -7,7 +7,8 @@ import PopupWithForm from './popupWithForm/PopupWithForm';
 import ImagePopup from './imagePopup/ImagePopup';
 
 function App() {
-
+    const [selectedCard, setSelectedCard] = React.useState({})
+    const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -17,6 +18,7 @@ function App() {
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
+        setIsImagePopupOpen(false);
     }
 
     function handleEditAvatarClick(event) {
@@ -31,7 +33,10 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
-
+    function handleCardClick(cardData) {
+        setSelectedCard(cardData);
+        setIsImagePopupOpen(true);
+    }
 
     return (
         <>
@@ -41,6 +46,7 @@ function App() {
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
                 onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
             >
 
             </Main>
@@ -50,11 +56,8 @@ function App() {
             <PopupWithForm onClose={closeAllPopups} isOpen={isEditAvatarPopupOpen} name="avatar" title="Обновить аватар"></PopupWithForm>
             <PopupWithForm onClose={closeAllPopups} isOpen={isEditProfilePopupOpen} name="profile" title="Редактировать профиль"></PopupWithForm>
             <PopupWithForm onClose={closeAllPopups} isOpen={isAddPlacePopupOpen} name="card" title="Новое место"></PopupWithForm>
-            <ImagePopup></ImagePopup>
+            <ImagePopup onClose={closeAllPopups} isOpen={isImagePopupOpen} card={selectedCard}></ImagePopup>
 
-
-
-         
         </>
     );
 }
