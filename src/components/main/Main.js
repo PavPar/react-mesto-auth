@@ -30,9 +30,9 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar,onCardCli
     return (
         <main className="content">
             <section className="profile">
-                <div className="profile__avatar-container">
+                <div className="profile__avatar-container" onClick={onEditAvatar}>
                     <img className="profile__avatar" src={userAvatar} alt="Аватар"></img>
-                    <button className="profile__button profile__button_type_pen" onClick={onEditAvatar}></button>
+                    <button className="profile__button profile__button_type_pen" ></button>
                 </div>
                 <div className="profile__info">
                     <h2 className="profile__title">{userName}</h2>
