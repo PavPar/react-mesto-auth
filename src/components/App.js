@@ -72,7 +72,7 @@ function App() {
                 children={(<>
                     <input className="popup__input popup__input-avatar-link" id="popup__input-avatar-link" type="url" required
                         placeholder="Ссылка на изображение" name="src"></input>
-                    <label for="popup__input-title" className="popup__errmsg" id="popup__input-avatar-link-errmsg"></label>
+                    <label htmlFor="popup__input-title" className="popup__errmsg" id="popup__input-avatar-link-errmsg"></label>
                 </>)}
             ></PopupWithForm>
 
@@ -83,12 +83,12 @@ function App() {
                 name="profile"
                 title="Редактировать профиль"
                 children={(<>
-                    <input className="popup__input popup__input-title" id="popup__input-title" type="text" required minlength="2"
-                        maxlength="40" name="userName"></input>
-                    <label for="popup__input-title" className="popup__errmsg" id="popup__input-title-errmsg"></label>
+                    <input className="popup__input popup__input-title" id="popup__input-title" type="text" required minLength="2"
+                        maxLength="40" name="userName"></input>
+                    <label htmlFor="popup__input-title" className="popup__errmsg" id="popup__input-title-errmsg"></label>
                     <input className="popup__input popup__input-subtitle" id="popup__input-subtitle" type="text" required
-                        minlength="2" maxlength="200" name="userInfo"></input>
-                    <label for="popup__input-subtitle" className="popup__errmsg" id="popup__input-subtitle-errmsg"></label>
+                        minLength="2" maxLength="200" name="userInfo"></input>
+                    <label htmlFor="popup__input-subtitle" className="popup__errmsg" id="popup__input-subtitle-errmsg"></label>
                 </>)}
             ></PopupWithForm>
 
@@ -100,12 +100,12 @@ function App() {
                 title="Новое место"
                 children={(<>
                     <input className="popup__input popup__input-card-title" id="popup__input-card-title" type="text" required
-                        placeholder="Название" minlength="2" maxlength="30" name="title"></input>
-                    <label for="popup__input-card-title" className="popup__errmsg" id="popup__input-card-title-errmsg"></label>
+                        placeholder="Название" minLength="2" maxLength="30" name="title"></input>
+                    <label htmlFor="popup__input-card-title" className="popup__errmsg" id="popup__input-card-title-errmsg"></label>
 
                     <input className="popup__input popup__input-card-link" id="popup__input-card-link" type="url" required
                         placeholder="Ссылка на изображение" name="src"></input>
-                    <label for="popup__input-title" className="popup__errmsg" id="popup__input-card-link-errmsg"></label>
+                    <label htmlFor="popup__input-title" className="popup__errmsg" id="popup__input-card-link-errmsg"></label>
                 </>)}
             ></PopupWithForm>
 
