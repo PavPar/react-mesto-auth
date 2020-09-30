@@ -26,10 +26,7 @@ export default function PopupWithForm({ name, title, isOpen, onClose,btnText, ch
 <form className="popup__window popup_type-avatar " novalidate name="popup__avatar-form">
     <h2 className="popup__title">Обновить аватар</h2>
 
-    <input className="popup__input popup__input-avatar-link" id="popup__input-avatar-link" type="url" required
-        placeholder="Ссылка на изображение" name="src"></input>
-    <label for="popup__input-title" className="popup__errmsg" id="popup__input-avatar-link-errmsg"></label>
-
+    
     <button className="popup__button popup__button_type_save" type="submit">Сохранить</button>
     <button className="popup__button popup__button_type_exit"></button>
 </form>

@@ -2,30 +2,18 @@ import React from 'react';
 import api from '../utils/Api';
 import Card from '../card/Card';
 
-export default function Main({ onEditProfile, onAddPlace, onEditAvatar,onCardClick }) {
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { CurrentCardsContext } from '../../context/CurrentCardsContext';
 
-    const [userName, setUserName] = React.useState('');
-    const [userAvatar, setUserAvatar] = React.useState('');
-    const [userDesc, setUserDesc] = React.useState('');
-    const [cards, setCards] = React.useState([]);
 
-    React.useEffect(() => {
-        Promise.all([
-            api.getUserInfo(),
-            api.getInitialCards()
-        ])
-            .then((values) => {
-                const [userData, cards] = values;
-                setUserName(userData['name'])
-                setUserAvatar(userData['avatar'])
-                setUserDesc(userData['about'])
-                setCards(cards.slice());
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
 
-    },[])
+    const userData = React.useContext(CurrentUserContext);
+    const cards = React.useContext(CurrentCardsContext);
+
+    const userName = userData['name'];
+    const userAvatar = userData['avatar'];
+    const userDesc = userData['about'];
 
     return (
         <main className="content">
@@ -44,7 +32,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar,onCardCli
             <section className="cards">
                 {
                     cards.map((card) => {
-                        return(<Card key={card['_id']} card={card} onCardClick={onCardClick}></Card>);
+                        return (<Card key={card['_id']} card={card} onCardClick={onCardClick}></Card>);
                     })
                 }
             </section>
