@@ -32,17 +32,23 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
 
 
     function handleCardLike(card) {
-        // Снова проверяем, есть ли уже лайк на этой карточке
         const isLiked = card.likes.some(i => i._id === userData ._id);
         
-        // Отправляем запрос в API и получаем обновлённые данные карточки
         api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-            // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
           const newCards = cards.map((c) => c._id === card._id ? newCard : c);
-          // Обновляем стейт
           setCards(newCards);
         });
     } 
+
+    function handleCardDelete(card){
+        api.deleteCard(card._id).then(()=>{
+            const NewCards = cards.filter((c)=>{
+                return c._id !== card._id
+            })
+
+            setCards(NewCards);
+        })
+    }
 
     return (
         <main className="content">
@@ -62,7 +68,13 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                 {
                     cards.map((card) => {
                         return (
-                            <Card key={card['_id']} card={card} onCardClick={onCardClick} onCardLike={handleCardLike}></Card>
+                            <Card 
+                            key={card['_id']} 
+                            card={card} 
+                            onCardClick={onCardClick} 
+                            onCardLike={handleCardLike}
+                            onCardDelete={handleCardDelete}
+                            ></Card>
                         );
                     })
                 }
