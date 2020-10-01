@@ -76,6 +76,12 @@ class Api {
         return this._accessServer("DELETE", "/cards/likes/" + cardId)
     }
 
+    changeLikeCardStatus(cardId, liked) {
+        return liked ?
+            this.likeCard(cardId) :
+            this.dislikeCard(cardId)
+    }
+    
     //Удалить карточку
     deleteCard(cardId) {
         return this._accessServer("DELETE", "/cards/" + cardId)

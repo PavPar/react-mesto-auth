@@ -8,11 +8,11 @@ import ImagePopup from "./imagePopup/ImagePopup";
 import api from './utils/Api';
 
 import { CurrentUserContext } from '../context/CurrentUserContext';
-import { CurrentCardsContext } from '../context/CurrentCardsContext'
 function App() {
     const [selectedCard, setSelectedCard] = React.useState({});
 
     const [currentUser, setUserData] = React.useState({});
+  
     const [currentCards, setCards] = React.useState([]);
 
     const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
@@ -54,7 +54,7 @@ function App() {
             .then((values) => {
                 const [userData, cards] = values;
                 setUserData(userData);
-                setCards(cards);
+                // setCards(cards);
             })
             .catch((err) => {
                 console.log(err);
@@ -66,14 +66,12 @@ function App() {
         <>
             <Header src={headerLogo}></Header>
             <CurrentUserContext.Provider value={currentUser}>
-                <CurrentCardsContext.Provider value={currentCards}>
-                    <Main
-                        onEditProfile={handleEditProfileClick}
-                        onAddPlace={handleAddPlaceClick}
-                        onEditAvatar={handleEditAvatarClick}
-                        onCardClick={handleCardClick}
-                    ></Main>
-                </CurrentCardsContext.Provider>
+                <Main
+                    onEditProfile={handleEditProfileClick}
+                    onAddPlace={handleAddPlaceClick}
+                    onEditAvatar={handleEditAvatarClick}
+                    onCardClick={handleCardClick}
+                ></Main>
             </CurrentUserContext.Provider>
 
             <Footer></Footer>
