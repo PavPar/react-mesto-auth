@@ -1,18 +1,25 @@
 import React from "react";
-import headerLogo from "../images/logo.svg";
+
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+import EditProfilePopup from "./EditProfilePopup"
+
 import api from '../utils/Api';
+
+
+import headerLogo from "../images/logo.svg";
+
 
 import { CurrentUserContext } from '../context/CurrentUserContext';
 function App() {
     const [selectedCard, setSelectedCard] = React.useState({});
 
     const [currentUser, setUserData] = React.useState({});
-  
+
 
     const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -20,8 +27,8 @@ function App() {
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
 
-    function closeAllPopups(event) {
-        event.preventDefault();
+    function closeAllPopups() {
+        // event.preventDefault();
         setIsEditAvatarPopupOpen(false);
         setIsEditProfilePopupOpen(false);
         setIsAddPlacePopupOpen(false);
@@ -43,6 +50,13 @@ function App() {
     function handleCardClick(cardData) {
         setSelectedCard(cardData);
         setIsImagePopupOpen(true);
+    }
+
+    function handleUserUpdate(newUserData) {
+        api.changeUserInfo(newUserData).then((res) => {
+            setUserData(res)
+            closeAllPopups();
+        })
     }
 
     React.useEffect(() => {
@@ -71,6 +85,14 @@ function App() {
                     onEditAvatar={handleEditAvatarClick}
                     onCardClick={handleCardClick}
                 ></Main>
+
+                <EditProfilePopup
+                    onClose={closeAllPopups}
+                    isOpen={isEditProfilePopupOpen}
+                    onUpdateUser={handleUserUpdate}
+                >
+                </EditProfilePopup>
+
             </CurrentUserContext.Provider>
 
             <Footer></Footer>
@@ -83,7 +105,8 @@ function App() {
                 title="Вы уверены?"
             ></PopupWithForm>
 
-            <PopupWithForm
+
+            {/* <PopupWithForm
                 btnText="Обновить"
                 onClose={closeAllPopups}
                 isOpen={isEditAvatarPopupOpen}
@@ -94,23 +117,31 @@ function App() {
                         placeholder="Ссылка на изображение" name="src"></input>
                     <label htmlFor="popup__input-title" className="popup__errmsg" id="popup__input-avatar-link-errmsg"></label>
                 </>)}
-            ></PopupWithForm>
-
+            ></PopupWithForm> */}
+            {/* 
             <PopupWithForm
-                btnText="Сохранить"
-                onClose={closeAllPopups}
-                isOpen={isEditProfilePopupOpen}
-                name="profile"
-                title="Редактировать профиль"
+                name="avatar"
+                btnText="Обновить"
+                onClose={onClose}
+                isOpen={isOpen}
+                title="Обновить аватар"
                 children={(<>
-                    <input className="popup__input popup__input-title" id="popup__input-title" type="text" required minLength="2"
-                        maxLength="40" name="userName"></input>
-                    <label htmlFor="popup__input-title" className="popup__errmsg" id="popup__input-title-errmsg"></label>
-                    <input className="popup__input popup__input-subtitle" id="popup__input-subtitle" type="text" required
-                        minLength="2" maxLength="200" name="userInfo"></input>
-                    <label htmlFor="popup__input-subtitle" className="popup__errmsg" id="popup__input-subtitle-errmsg"></label>
+                    <input
+                        required
+                        className="popup__input popup__input-avatar-link"
+                        id="popup__input-avatar-link"
+                        type="url"
+                        placeholder="Ссылка на изображение"
+                        name="src"
+                        onChange
+                    ></input>
+                    <label
+                        htmlFor="popup__input-title"
+                        className="popup__errmsg"
+                        id="popup__input-avatar-link-errmsg"
+                    ></label>
                 </>)}
-            ></PopupWithForm>
+            ></PopupWithForm> */}
 
             <PopupWithForm
                 btnText="Добавить"
