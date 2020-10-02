@@ -88,10 +88,8 @@ class Api {
     }
 
     //Изменить аватар пользователя
-    changeUserAvatar(url) {
-        return this._sendDataToServer("PATCH", "/users/me/avatar", {
-            avatar: url
-        })
+    changeUserAvatar(newAvatar) {
+        return this._sendDataToServer("PATCH", "/users/me/avatar", newAvatar)
     }
 }
 

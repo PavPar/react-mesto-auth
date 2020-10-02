@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup"
+import EditAvatarPopup from "./EditAvatarPopup"
 
 import api from '../utils/Api';
 
@@ -59,6 +60,13 @@ function App() {
         })
     }
 
+    function handleAvatarUpdate(newAvatar) {
+        api.changeUserAvatar(newAvatar).then((res) => {
+            setUserData(res);
+            closeAllPopups();
+        })
+    }
+
     React.useEffect(() => {
         Promise.all([
             api.getUserInfo(),
@@ -93,17 +101,24 @@ function App() {
                 >
                 </EditProfilePopup>
 
+                <EditAvatarPopup
+                    onClose={closeAllPopups}
+                    isOpen={isEditAvatarPopupOpen}
+                    onUpdateUrl={handleAvatarUpdate}
+                >
+                </EditAvatarPopup>
+
             </CurrentUserContext.Provider>
 
             <Footer></Footer>
 
-            <PopupWithForm
+            {/* <PopupWithForm
                 btnText="Да"
                 onClose={closeAllPopups}
                 isOpen={false}
                 name="confirm"
                 title="Вы уверены?"
-            ></PopupWithForm>
+            ></PopupWithForm> */}
 
 
             {/* <PopupWithForm
@@ -116,30 +131,6 @@ function App() {
                     <input className="popup__input popup__input-avatar-link" id="popup__input-avatar-link" type="url" required
                         placeholder="Ссылка на изображение" name="src"></input>
                     <label htmlFor="popup__input-title" className="popup__errmsg" id="popup__input-avatar-link-errmsg"></label>
-                </>)}
-            ></PopupWithForm> */}
-            {/* 
-            <PopupWithForm
-                name="avatar"
-                btnText="Обновить"
-                onClose={onClose}
-                isOpen={isOpen}
-                title="Обновить аватар"
-                children={(<>
-                    <input
-                        required
-                        className="popup__input popup__input-avatar-link"
-                        id="popup__input-avatar-link"
-                        type="url"
-                        placeholder="Ссылка на изображение"
-                        name="src"
-                        onChange
-                    ></input>
-                    <label
-                        htmlFor="popup__input-title"
-                        className="popup__errmsg"
-                        id="popup__input-avatar-link-errmsg"
-                    ></label>
                 </>)}
             ></PopupWithForm> */}
 
