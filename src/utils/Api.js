@@ -76,16 +76,20 @@ class Api {
         return this._accessServer("DELETE", "/cards/likes/" + cardId)
     }
 
+    changeLikeCardStatus(cardId, liked) {
+        return liked ?
+            this.likeCard(cardId) :
+            this.dislikeCard(cardId)
+    }
+    
     //Удалить карточку
     deleteCard(cardId) {
         return this._accessServer("DELETE", "/cards/" + cardId)
     }
 
     //Изменить аватар пользователя
-    changeUserAvatar(url) {
-        return this._sendDataToServer("PATCH", "/users/me/avatar", {
-            avatar: url
-        })
+    changeUserAvatar(newAvatar) {
+        return this._sendDataToServer("PATCH", "/users/me/avatar", newAvatar)
     }
 }
 
