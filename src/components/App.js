@@ -1,11 +1,11 @@
 import React from "react";
 import headerLogo from "../images/logo.svg";
-import Header from "./header/Header";
-import Main from "./main/Main";
-import Footer from "./footer/Footer";
-import PopupWithForm from "./popupWithForm/PopupWithForm";
-import ImagePopup from "./imagePopup/ImagePopup";
-import api from './utils/Api';
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
+import api from '../utils/Api';
 
 import { CurrentUserContext } from '../context/CurrentUserContext';
 function App() {
@@ -13,7 +13,6 @@ function App() {
 
     const [currentUser, setUserData] = React.useState({});
   
-    const [currentCards, setCards] = React.useState([]);
 
     const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
