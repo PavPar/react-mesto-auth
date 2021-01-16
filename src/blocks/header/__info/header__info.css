@@ -1,0 +1,11 @@
+.header__info{
+    margin-right: 24px;
+}
+
+.header__info:last-child{
+    margin: 0;
+}
+
+.header__info:nth-child(2){
+    margin-left: auto;
+}
