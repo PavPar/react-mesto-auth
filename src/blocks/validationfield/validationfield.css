@@ -1,0 +1,9 @@
+@import url(./__input/validationfield__input.css);
+@import url(./__label/validationfield__label.css);
+
+.validationfield{
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+    min-height: 55px;
+}

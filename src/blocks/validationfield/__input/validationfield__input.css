@@ -1,0 +1,23 @@
+.validationfield__input {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #CCCCCC;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 17px;
+    padding-bottom: 13px;
+    background-color: unset;
+    color:white;
+    font-weight: normal;
+}
+
+@media screen and (max-width:535px) {
+    .validationfield__input {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+.validationfield__input:last-of-type{
+    margin-bottom: 0;
+}

@@ -20,3 +20,6 @@
 /* Animations */
 @import url(./animations/fade-in.css);
 @import url(./animations/fade-out.css);
+/* Form Block*/
+@import url(./blocks/form/form.css);
+@import url(./blocks/validationfield/validationfield.css)
