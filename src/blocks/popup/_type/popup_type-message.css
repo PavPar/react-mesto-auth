@@ -6,3 +6,10 @@
     padding: 60px 36px;
     box-sizing: border-box;
 }
+
+@media screen and (max-width:535px) {
+    .popup__window {
+        max-width: calc(320px - (20px * 2));
+        padding: 50px 18px;
+    }
+}

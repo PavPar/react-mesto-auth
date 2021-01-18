@@ -12,11 +12,15 @@
   align-items: baseline;
   font-size: 18px;
   line-height: 22px;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 1024px) {
   .header {
     max-width: 582px;
+    padding: 0 30px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 

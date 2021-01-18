@@ -13,3 +13,10 @@
     background-size: 40px 40px;
     border: 0;
 }
+
+@media screen and (max-width:535px) {
+    .popup__button_type_exit  {
+        left: calc(50% - 20px);
+        top: -80px;
+    }
+}

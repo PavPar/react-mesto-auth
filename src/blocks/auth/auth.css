@@ -1,0 +1,9 @@
+@import url(./__text/auth__text.css);
+
+.auth{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
