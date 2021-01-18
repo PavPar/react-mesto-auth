@@ -16,6 +16,7 @@
 /* -- */
 @import url(./_type/popup_type-confirm.css);
 @import url(./_type/popup_type-avatar.css);
+@import url(./_type/popup_type-message.css);
 
 .popup {
     position: fixed;

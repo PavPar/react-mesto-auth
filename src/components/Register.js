@@ -3,9 +3,19 @@ import Header from "./Header";
 import headerLogo from "../images/logo.svg";
 import Form from './Form';
 import ValidationField from './ValidationField';
+import Popup from './Popup';
 
 export default function Register() {
+    const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
 
+    function closeAllPopups() {
+        setIsImagePopupOpen(false);
+    }
+
+    const loginSuccsess = {
+        name: 'test',
+        link: 'test'
+    }
     return (
         <>
             <Header src={headerLogo} >
@@ -17,8 +27,9 @@ export default function Register() {
 
                 title="Новое место"
                 btnText="Добавить"
-                onSubmit={() => {
-
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    setIsImagePopupOpen(true);
                 }}
 
             >
@@ -40,6 +51,15 @@ export default function Register() {
                 />
 
             </Form>
+
+            <Popup
+                onClose={closeAllPopups}
+                isOpen={isImagePopupOpen}
+                name={'message'}
+            >
+                <img className="popup__image" src={headerLogo} alt="fuck"></img>
+                <h2 className="popup__title">{"Все путем!"}</h2>
+            </Popup>
         </>
     );
 }
