@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import headerLogo from "../images/logo.svg";
-import errLogo from "../images/err.svg";
-import sucLogo from "../images/suc.svg";
+
 
 import Form from './Form';
 import ValidationField from './ValidationField';
-import Popup from './Popup';
+import InfoTooltip from './InfoTooltip';
 
 export default function Register() {
-    const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+    const [StatusPopupOpen, setStatusPopupOpen] = React.useState(false);
 
     function closeAllPopups() {
-        setIsImagePopupOpen(false);
+        setStatusPopupOpen(false);
     }
 
-    const loginSuccsess = {
-        name: 'test',
-        link: 'test'
-    }
+    const [isFormValid, setFormValidity] = React.useState(false);
+    const [isLoginValid, setLoginValidity] = React.useState(false);
+    const [isPasswordValid, setPasswordValidity] = React.useState(false);
+
+    const inputValidity = [
+        isLoginValid, isPasswordValid
+    ]
+
+    useEffect(() => {
+        setFormValidity(!inputValidity.some((input) => !input));
+
+    }, [inputValidity])
+
     return (
         <>
             <Header src={headerLogo} >
@@ -32,9 +40,13 @@ export default function Register() {
                     btnText="Добавить"
                     onSubmit={(event) => {
                         event.preventDefault();
-                        setIsImagePopupOpen(true);
+                        setFormValidity(!inputValidity.some((input) => !input));
+                        if(!isFormValid){
+                            return
+                        }
+                        setStatusPopupOpen(true);
                     }}
-
+                    isButtonActive={true}
                 >
                     <ValidationField
                         id="form__input-card-title"
@@ -44,6 +56,11 @@ export default function Register() {
                         minLength="2"
                         maxLength="30"
                         required={true}
+                        onValidityChange={
+                            (state) => {
+                                setLoginValidity(state.valid)
+                            }
+                        }
                     />
                     <ValidationField
                         required={true}
@@ -51,20 +68,24 @@ export default function Register() {
                         type="url"
                         placeholder="Ссылка на изображение"
                         name="src"
+                        onValidityChange={
+                            (state) => {
+                                setPasswordValidity(state.valid)
+                            }
+                        }
                     />
 
                 </Form>
+                <InfoTooltip
+                    onClose={closeAllPopups}
+                    isOpen={StatusPopupOpen}
+                    isOk={isFormValid}
+                    okMsg={'Вы успешно зарегистрировались!'}
+                    errMsg={'Что-то пошло не так! Попробуйте ещё раз.'}
+                />
                 <p className="auth__text">Уже зарегистрированы? Войти</p>
             </section>
 
-            <Popup
-                onClose={closeAllPopups}
-                isOpen={isImagePopupOpen}
-                name={'message'}
-            >
-                <img className="popup__image" src={sucLogo} alt="fuck"></img>
-                <h2 className="popup__title">{"Все путем!"}</h2>
-            </Popup>
         </>
     );
 }

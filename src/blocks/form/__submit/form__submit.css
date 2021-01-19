@@ -1,3 +1,5 @@
+@import url(./_state/form__submit_state-disabled.css);
+
 .form__submit {
   width: 100%;
   min-height: 50px;

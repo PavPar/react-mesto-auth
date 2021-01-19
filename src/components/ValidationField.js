@@ -8,10 +8,11 @@ export default function ValidationField(
         id,
         minLength,
         maxLength,
-        required = false
+        required = false,
+        onValidityChange
     }) {
 
-    const test = React.createRef();
+    const input = React.createRef();
     const [state, setState] = React.useState('');
     return (
         <div className="validationfield">
@@ -24,8 +25,21 @@ export default function ValidationField(
                 name={name}
                 minLength={minLength}
                 maxLength={maxLength}
-                ref={test}
-                onChange={() => { setState(test.current.value); console.log(state) }}
+                ref={input}
+                onChange={() => {
+                    setState({
+                        valid: input.current.validity.valid,
+                        msg: input.current.validationMessage
+                    });
+                    onValidityChange(state);
+                }}
+                onBlur={() => {
+                    setState({
+                        valid: input.current.validity.valid,
+                        msg: input.current.validationMessage
+                    });
+                    onValidityChange(state);
+                }}
             >
             </input>
 
@@ -33,7 +47,7 @@ export default function ValidationField(
                 htmlFor={id}
                 className="popup__errmsg"
             >
-                {state}
+                {state.msg}
             </label>
 
         </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Form({ title, onSubmit, btnText, children }) {
-
+export default function Form({ title, onSubmit, btnText,isButtonActive=true, children }) {
     return (
 
         <form noValidate className={`form`}>
@@ -10,8 +9,9 @@ export default function Form({ title, onSubmit, btnText, children }) {
             {children}
 
             <button
-                className="form__submit"
+                className={`form__submit ${!isButtonActive&&'form__submit_state-disabled'}`}
                 type="submit"
+                disabled={!isButtonActive}
                 onClick={onSubmit}>
                 {btnText}
             </button>
