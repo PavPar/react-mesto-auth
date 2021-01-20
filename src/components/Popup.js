@@ -1,15 +1,14 @@
 import React from 'react';
 
 
-export default function Popup({ name, title, isOpen, onClose, onSubmit, btnText, children }) {
-
+export default function Popup({ name, isOpen, onClose, children, }) {
     function handleClose(e) {
         e.preventDefault();
         onClose();
     }
-
+    
     return (
-        <section className={`popup ${!isOpen && 'popup_visibility-hidden'} popup-${name}`}>
+        <section style={{ visibility: "hidden" }} className={`popup ${!isOpen && 'popup_visibility-hidden'} popup-${name}`}>
 
             <form noValidate
                 className={`popup__window popup_type-${name}`}

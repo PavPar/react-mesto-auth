@@ -10,11 +10,20 @@ export default function ValidationField(
         maxLength,
         required = false,
         displayValidity = true,
-        onValidityChange
+        onValidityChange,
+        input
     }) {
 
-    const input = React.createRef();
     const [state, setState] = React.useState('');
+
+    const validation = () => {
+        setState({
+            valid: input.current.validity.valid,
+            msg: input.current.validationMessage,
+            value: input.current.value
+        });
+        onValidityChange(state);
+    }
     return (
         <div className="validationfield">
             <input
@@ -27,20 +36,12 @@ export default function ValidationField(
                 minLength={minLength}
                 maxLength={maxLength}
                 ref={input}
-                onChange={() => {
-                    setState({
-                        valid: input.current.validity.valid,
-                        msg: input.current.validationMessage
-                    });
-                    onValidityChange(state);
-                }}
-                onBlur={() => {
-                    setState({
-                        valid: input.current.validity.valid,
-                        msg: input.current.validationMessage
-                    });
-                    onValidityChange(state);
-                }}
+                onChange={
+                    validation
+                }
+                onBlur={
+                    validation
+                }
             >
             </input>
 
