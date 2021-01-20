@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React,{useEffect} from "react";
+import {Link } from 'react-router-dom';
 import Header from "./Header";
 import headerLogo from "../images/logo.svg";
-
 
 import Form from './Form';
 import ValidationField from './ValidationField';
@@ -30,18 +30,18 @@ export default function Register() {
     return (
         <>
             <Header src={headerLogo} >
-                <p className="header__link">Регистрация</p>
+                <Link to="./sign-in" className="header__link">Войти</Link>
             </Header>
             <section className="auth">
                 <Form
                     name="card"
 
-                    title="Новое место"
-                    btnText="Добавить"
+                    title="Регистрация"
+                    btnText="Зарегестрироваться"
                     onSubmit={(event) => {
                         event.preventDefault();
                         setFormValidity(!inputValidity.some((input) => !input));
-                        if(!isFormValid){
+                        if (!isFormValid) {
                             return
                         }
                         setStatusPopupOpen(true);
@@ -51,8 +51,8 @@ export default function Register() {
                     <ValidationField
                         id="form__input-card-title"
                         type="text"
-                        placeholder="Название"
-                        name="title"
+                        placeholder="Email"
+                        name="email"
                         minLength="2"
                         maxLength="30"
                         required={true}
@@ -63,11 +63,11 @@ export default function Register() {
                         }
                     />
                     <ValidationField
+                        id="form__input-card-title"
+                        type="password"
+                        placeholder="Пароль"
+                        name="password"
                         required={true}
-                        id="form__input-card-link"
-                        type="url"
-                        placeholder="Ссылка на изображение"
-                        name="src"
                         onValidityChange={
                             (state) => {
                                 setPasswordValidity(state.valid)
@@ -83,7 +83,7 @@ export default function Register() {
                     okMsg={'Вы успешно зарегистрировались!'}
                     errMsg={'Что-то пошло не так! Попробуйте ещё раз.'}
                 />
-                <p className="auth__text">Уже зарегистрированы? Войти</p>
+                <Link to="/sign-in" className="auth__text">Уже зарегистрированы? Войти</Link>
             </section>
 
         </>

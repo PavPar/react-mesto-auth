@@ -9,6 +9,7 @@ export default function ValidationField(
         minLength,
         maxLength,
         required = false,
+        displayValidity = true,
         onValidityChange
     }) {
 
@@ -47,7 +48,7 @@ export default function ValidationField(
                 htmlFor={id}
                 className="popup__errmsg"
             >
-                {state.msg}
+                {displayValidity && state.msg}
             </label>
 
         </div>
