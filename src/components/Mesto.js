@@ -14,7 +14,7 @@ import headerLogo from "../images/logo.svg";
 
 import { CurrentUserContext } from '../context/CurrentUserContext';
 
-export default function Mesto() {
+export default function Mesto({userInfo,handleLogout}) {
     const [selectedCard, setSelectedCard] = React.useState({});
 
     const [currentUser, setUserData] = React.useState({});
@@ -114,7 +114,11 @@ export default function Mesto() {
         <>
 
 
-            <Header src={headerLogo}></Header>
+            <Header src={headerLogo}>
+                <p className="header__info">{"aaa"}</p>
+                <button to="./sign-up" className="header__link" onClick={handleLogout}>Регистрация</button>
+                
+            </Header>
             <CurrentUserContext.Provider value={currentUser}>
                 <Main
                     onEditProfile={handleEditProfileClick}

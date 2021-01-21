@@ -2,6 +2,8 @@
   color: #ffffff;
   text-decoration: none;
   transition: opacity ease-out 0.5s;
+  background: none;
+  border: none;
 }
 
 .header__link:hover {

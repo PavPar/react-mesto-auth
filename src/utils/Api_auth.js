@@ -19,7 +19,7 @@ class Api_auth {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(res.status);
+                return Promise.reject(res);
             })
             .then((result) => {
                 return result;
@@ -46,6 +46,18 @@ class Api_auth {
 
     authUser({email,password}){
         return this._sendDataToServer("POST","/signin",{email,password})
+        .then((data)=>{
+            console.log(data)
+            localStorage.setItem('jwt', data.token);
+            return data;
+        })
+    }
+
+    checkToken(token){
+        return this._accessServer("GET","/users/me",{
+            "Content-Type": "application/json",
+            "Authorization" : `Bearer ${token}`
+        })
     }
 }
 

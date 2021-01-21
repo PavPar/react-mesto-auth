@@ -1,19 +1,21 @@
-import React, { useEffect }  from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import ReactTestUtils from 'react-dom/test-utils';
+import { Link, withRouter } from "react-router-dom";
+import { useHistory } from "react-router";
 
 import Header from "./Header";
 import InfoTooltip from "./InfoTooltip";
 import ValidationField from './ValidationField';
 import Form from './Form';
 
-import App_auth from "../utils/Api_auth";
+import Api_auth from "../utils/Api_auth";
 
 import headerLogo from "../images/logo.svg";
 
-export default function Login() {
-    const statusErrMsg={
-        400:"Данные не введены",
-        401:"Неправильный Email/пароль"
+function Login({ handleLogin }) {
+    const statusErrMsg = {
+        400: "Данные не введены",
+        401: "Неправильный Email/пароль"
     }
     const [isFormValid, setFormValidity] = React.useState(false);
     const [isLoginValid, setLoginValidity] = React.useState(false);
@@ -26,18 +28,23 @@ export default function Login() {
         isLoginValid, isPasswordValid
     ]
 
+    const emailRef = useRef()
+    const passwordRef = useRef()
+
     const [StatusPopupOpen, setStatusPopupOpen] = React.useState(false);
 
     function closeAllPopups() {
         setStatusPopupOpen(false);
     }
 
-    const [popupMsg,setPopupMsg] = React.useState('');
-    
+    const [popupMsg, setPopupMsg] = React.useState('');
+
     useEffect(() => {
         setFormValidity(!inputValidity.some((input) => !input));
 
     }, [inputValidity])
+
+    const history = useHistory();
 
     return (
         <>
@@ -53,14 +60,21 @@ export default function Login() {
                     onSubmit={(event) => {
                         event.preventDefault();
                         setFormValidity(!inputValidity.some((input) => !input));
-                     
-                        App_auth.authUser({
+
+                        if (!isFormValid) {
+
+                            ReactTestUtils.Simulate.change(emailRef.current);
+                            ReactTestUtils.Simulate.change(passwordRef.current);
+                        }
+
+                        Api_auth.authUser({
                             email: currentLogin,
                             password: currentPassword
                         }).then((res) => {
-                            console.log(res);
-                        }).catch((err)=>{
-                            setPopupMsg(statusErrMsg[err.status]||"Возникла неизвестная ошибка")
+                            handleLogin(res)
+                            history.push('/')
+                        }).catch((err) => {
+                            setPopupMsg(statusErrMsg[err.status] || "Возникла неизвестная ошибка")
                             setStatusPopupOpen(true)
                             console.log(err)
                         })
@@ -81,7 +95,8 @@ export default function Login() {
                                 setLogin(state.value);
                             }
                         }
-                        displayValidity={false}
+                        // displayValidity={false}
+                        input={emailRef}
                     />
                     <ValidationField
                         id="form__input-card-title"
@@ -95,7 +110,8 @@ export default function Login() {
                                 setPassword(state.value);
                             }
                         }
-                        displayValidity={false}
+                        // displayValidity={false}
+                        input={passwordRef}
                     />
 
                 </Form>
@@ -110,3 +126,5 @@ export default function Login() {
         </>
     );
 }
+
+export default withRouter(Login)

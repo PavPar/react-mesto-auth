@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import ReactTestUtils from 'react-dom/test-utils';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Header from "./Header";
 import headerLogo from "../images/logo.svg";
 import App_auth from "../utils/Api_auth"
@@ -9,7 +9,7 @@ import Form from './Form';
 import ValidationField from './ValidationField';
 import InfoTooltip from './InfoTooltip';
 
-export default function Register() {
+function Register() {
     const [StatusPopupOpen, setStatusPopupOpen] = React.useState(false);
 
     function closeAllPopups() {
@@ -53,7 +53,6 @@ export default function Register() {
 
                         setFormValidity(!inputValidity.some((input) => !input));
                         if (!isFormValid) {
-                            console.log('bad')
 
                             ReactTestUtils.Simulate.change(emailRef.current);
                             ReactTestUtils.Simulate.change(passwordRef.current);
@@ -119,3 +118,5 @@ export default function Register() {
         </>
     );
 }
+
+export default withRouter(Register)
