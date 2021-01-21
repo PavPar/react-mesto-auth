@@ -21,7 +21,8 @@ function App() {
     }
 
     function handleLogout() {
-        console.log('aaaa')
+        localStorage.removeItem('jwt')
+        changeLoggedIn(false);
     }
 
     function handleTokenCheck() {

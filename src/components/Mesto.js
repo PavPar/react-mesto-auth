@@ -116,7 +116,7 @@ export default function Mesto({userInfo,handleLogout}) {
 
             <Header src={headerLogo}>
                 <p className="header__info">{"aaa"}</p>
-                <button to="./sign-up" className="header__link" onClick={handleLogout}>Регистрация</button>
+                <button to="./sign-up" className="header__link" onClick={handleLogout}>Выйти</button>
                 
             </Header>
             <CurrentUserContext.Provider value={currentUser}>
