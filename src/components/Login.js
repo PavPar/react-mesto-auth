@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from "react";
 import ReactTestUtils from 'react-dom/test-utils';
 import { Link, withRouter } from "react-router-dom";
@@ -45,6 +46,26 @@ function Login({ handleLogin }) {
     }, [inputValidity])
 
     const history = useHistory();
+    const [isReadyForSubmit,setReadyForSubmit] = React.useState(false)
+
+    useEffect(()=>{
+        setReadyForSubmit(false)
+        if (!isFormValid) {
+            return
+        }
+
+        Api_auth.authUser({
+            email: currentLogin,
+            password: currentPassword
+        }).then((res) => {
+            handleLogin(res)
+            history.push('/')
+        }).catch((err) => {
+            setPopupMsg(statusErrMsg[err.status] || "Возникла неизвестная ошибка")
+            setStatusPopupOpen(true)
+            console.log(err)
+        })
+    },[isFormValid,isReadyForSubmit])
 
     return (
         <>
@@ -59,25 +80,9 @@ function Login({ handleLogin }) {
                     btnText="Войти"
                     onSubmit={(event) => {
                         event.preventDefault();
-                        setFormValidity(!inputValidity.some((input) => !input));
-
-                        if (!isFormValid) {
-
-                            ReactTestUtils.Simulate.change(emailRef.current);
-                            ReactTestUtils.Simulate.change(passwordRef.current);
-                        }
-
-                        Api_auth.authUser({
-                            email: currentLogin,
-                            password: currentPassword
-                        }).then((res) => {
-                            handleLogin(res)
-                            history.push('/')
-                        }).catch((err) => {
-                            setPopupMsg(statusErrMsg[err.status] || "Возникла неизвестная ошибка")
-                            setStatusPopupOpen(true)
-                            console.log(err)
-                        })
+                        ReactTestUtils.Simulate.change(emailRef.current);
+                        ReactTestUtils.Simulate.change(passwordRef.current);
+                        setReadyForSubmit(true);
                     }}
                     isButtonActive={true}
                 >

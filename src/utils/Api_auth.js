@@ -47,7 +47,6 @@ class Api_auth {
     authUser({email,password}){
         return this._sendDataToServer("POST","/signin",{email,password})
         .then((data)=>{
-            console.log(data)
             localStorage.setItem('jwt', data.token);
             return data;
         })

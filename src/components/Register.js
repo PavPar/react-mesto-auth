@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from "react";
 import ReactTestUtils from 'react-dom/test-utils';
 import { Link, withRouter } from 'react-router-dom';
 import Header from "./Header";
 import headerLogo from "../images/logo.svg";
-import App_auth from "../utils/Api_auth"
+import Api_auth from "../utils/Api_auth"
 
 import Form from './Form';
 import ValidationField from './ValidationField';
@@ -37,6 +38,28 @@ function Register() {
 
     }, [inputValidity])
 
+    const [isReadyForSubmit, setReadyForSubmit] = React.useState(false)
+
+    useEffect(() => {
+        setReadyForSubmit(false)
+        if (!isFormValid) {
+            return
+        }
+
+        Api_auth.registerUser({
+            email: currentLogin,
+            password: currentPassword
+        }).then((res) => {
+            setAuthStatus(true);
+            setStatusPopupOpen(true);
+            return res
+        }).catch((res) => {
+            setAuthStatus(false);
+            setStatusPopupOpen(true);
+            return res
+        })
+    }, [isFormValid, isReadyForSubmit])
+
     return (
         <>
             <Header src={headerLogo} >
@@ -51,26 +74,14 @@ function Register() {
                     onSubmit={(event) => {
                         event.preventDefault();
 
-                        setFormValidity(!inputValidity.some((input) => !input));
-                        if (!isFormValid) {
+                        ReactTestUtils.Simulate.change(emailRef.current);
+                        ReactTestUtils.Simulate.change(passwordRef.current);
 
-                            ReactTestUtils.Simulate.change(emailRef.current);
-                            ReactTestUtils.Simulate.change(passwordRef.current);
-                            return
+                        if (!inputValidity.some((input) => !input)) {
+                            setFormValidity(true)
+                            setReadyForSubmit(true)
                         }
 
-                        App_auth.registerUser({
-                            email: currentLogin,
-                            password: currentPassword
-                        }).then((res) => {
-                            console.log(res);
-                            setAuthStatus(true);
-                            setStatusPopupOpen(true);
-                        }).catch((res) => {
-                            console.log(res)
-                            setAuthStatus(false);
-                            setStatusPopupOpen(true);
-                        })
                     }}
                     isButtonActive={true}
                 >

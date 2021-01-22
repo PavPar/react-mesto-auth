@@ -115,7 +115,7 @@ export default function Mesto({userInfo,handleLogout}) {
 
 
             <Header src={headerLogo}>
-                <p className="header__info">{"aaa"}</p>
+                <p className="header__info">{userInfo.email}</p>
                 <button to="./sign-up" className="header__link" onClick={handleLogout}>Выйти</button>
                 
             </Header>
