@@ -11,7 +11,8 @@
     width: 24px;
     height: 24px;
     border: unset;
-    background: no-repeat;
+    background: no-repeat center ;
+    background-size: 24px 24px;
     background-image: url(../../../images/menu.svg);
   }
 }

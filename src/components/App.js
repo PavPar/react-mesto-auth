@@ -16,7 +16,6 @@ function App() {
 
     function handleLogin(res) {
         changeLoggedIn(true);
-        console.log(res);
     }
 
     function handleLogout() {

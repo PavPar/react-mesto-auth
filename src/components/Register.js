@@ -49,16 +49,20 @@ function Register() {
         Api_auth.registerUser({
             email: currentLogin,
             password: currentPassword
-        }).then((res) => {
-            setAuthStatus(true);
-            setStatusPopupOpen(true);
-            return res
-        }).catch((res) => {
-            setAuthStatus(false);
-            setStatusPopupOpen(true);
-            return res
         })
-    }, [isFormValid, isReadyForSubmit])
+            .then((res) => {
+                setAuthStatus(true);
+
+            })
+            .then(() => {
+                setStatusPopupOpen(true);
+            })
+            .catch((res) => {
+                setAuthStatus(false);
+                setStatusPopupOpen(true);
+                return res
+            })
+    }, [isReadyForSubmit])
 
     return (
         <>
@@ -73,7 +77,7 @@ function Register() {
                     btnText="Зарегестрироваться"
                     onSubmit={(event) => {
                         event.preventDefault();
-
+                        console.log('submit called')
                         ReactTestUtils.Simulate.change(emailRef.current);
                         ReactTestUtils.Simulate.change(passwordRef.current);
 

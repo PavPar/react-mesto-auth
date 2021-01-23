@@ -1,7 +1,8 @@
 .header__menu_type-close {
   width: 30px;
   height: 30px;
-  bottom: 20px;
+  bottom: 25px;
   transform: rotate(45deg);
+  background-size: 30px 30px;
   background-image: url(../../../../images/plus.svg);
 }

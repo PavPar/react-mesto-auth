@@ -65,7 +65,7 @@ function Login({ handleLogin }) {
             setStatusPopupOpen(true)
             console.log(err)
         })
-    },[isFormValid,isReadyForSubmit])
+    },[isReadyForSubmit])
 
     return (
         <>
