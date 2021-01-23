@@ -10,7 +10,6 @@ import EditAvatarPopup from "./EditAvatarPopup"
 import AddPlacePopup from "./AddPlacePopup"
 import api from '../utils/Api';
 import NavBar from "./NavBar";
-
 import headerLogo from "../images/logo.svg";
 
 import { CurrentUserContext } from '../context/CurrentUserContext';
@@ -26,7 +25,7 @@ export default function Mesto({ userInfo, handleLogout }) {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
-    const [isNavBarVisible,setNavBarVisible] = React.useState(false);
+    const [isNavBarVisible, setNavBarVisible] = React.useState(false);
 
     function closeAllPopups() {
         setIsEditAvatarPopupOpen(false);
@@ -116,16 +115,18 @@ export default function Mesto({ userInfo, handleLogout }) {
     return (
         <>
 
-
-            <Header src={headerLogo} type="header_type-nav"> 
-                <NavBar 
-                isVisible={isNavBarVisible}>
+            <Header src={headerLogo} type="header_type-nav">
+                <NavBar
+                    isVisible={isNavBarVisible}>
                     <p className="navbar__info">{userInfo.email}</p>
                     <button to="./sign-up" className="navbar__link" onClick={handleLogout}>Выйти</button>
                 </NavBar>
-                <button className="header__menu" onClick={()=>{
-                    setNavBarVisible(!isNavBarVisible)
-                }}></button>
+
+                <button
+                    className={`header__menu ${isNavBarVisible&&"header__menu-close"}`}
+                    onClick={() => {
+                        setNavBarVisible(!isNavBarVisible)
+                    }} />
             </Header>
             <CurrentUserContext.Provider value={currentUser}>
                 <Main

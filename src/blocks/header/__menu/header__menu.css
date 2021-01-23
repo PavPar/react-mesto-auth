@@ -5,12 +5,22 @@
 @media screen and (max-width: 768px) {
   .header__menu {
     position: absolute;
+    display: block;
     right: 30px;
     bottom: 30px;
-    display: block;
-    width: 18px;
+    width: 24px;
     height: 24px;
-    /* background: none; */
-    border: unset
+    border: unset;
+    background: no-repeat;
+    background-image: url(../../../images/menu.svg);
   }
+
+  .header__menu-close{
+    width: 30px;
+    height: 30px;
+    bottom: 20px;
+    transform: rotate(45deg);
+    background-image: url(../../../images/plus.svg);
+  }
+
 }

@@ -1,18 +1,20 @@
-.navbar__info{
-    margin-right: 24px;
+.navbar__info {
+  margin-right: 24px;
+  color: white;
+  opacity: 1;
 }
 
-.navbar__info:last-child{
-    margin: 0;
+.navbar__info:last-child {
+  margin: 0;
 }
 
-.navbar__info:nth-child(2){
-    margin-left: auto;
+.navbar__info:nth-child(2) {
+  margin-left: auto;
 }
 
 @media screen and (max-width: 768px) {
-    .navbar__info{
-        margin: 0;
-    }
+  .navbar__info {
+    text-align: center;
+    margin: 0;
   }
-  
+}
