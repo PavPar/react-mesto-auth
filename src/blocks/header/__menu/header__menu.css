@@ -1,0 +1,16 @@
+.header__menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: block;
+    width: 18px;
+    height: 24px;
+    /* background: none; */
+    border: unset
+  }
+}

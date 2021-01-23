@@ -1,13 +1,13 @@
-.header__link {
+.navbar__link {
   color: #ffffff;
   text-decoration: none;
   transition: opacity ease-out 0.5s;
   background: none;
   border: none;
+  opacity: 0.8;
 }
 
-.header__link:hover {
+.navbar__link:hover {
   opacity: 0.5;
 }
-
 

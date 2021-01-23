@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px) {
+    .header_type-nav {
+      margin-top: 28px;
+      max-width: 320px;
+      flex-direction: column-reverse;
+    }
+  }
+  

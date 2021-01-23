@@ -1,0 +1,24 @@
+@import url(./__info/navbar__info.css);
+@import url(./__link/navbar__link.css);
+
+.navbar{
+    display: flex;
+}
+@media screen and (max-width: 768px) {
+  .navbar {
+    margin: 40px auto;
+    max-width: 320px;
+    display: grid;
+    gap: 18px;
+  }
+}
+
+.navbar-hidden {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-hidden {
+    display: flex;
+  }
+}
