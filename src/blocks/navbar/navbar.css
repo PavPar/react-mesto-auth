@@ -6,19 +6,15 @@
 }
 @media screen and (max-width: 768px) {
   .navbar {
-    margin: 40px auto;
+    box-sizing: border-box;
+    padding-bottom: 40px;
+    width: 100%;
     max-width: 320px;
     display: grid;
     gap: 18px;
+    border-bottom: 1px solid #545454;
+    align-items: center;
+    margin-bottom: 30px;
   }
 }
 
-.navbar-hidden {
-  display: none;
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-hidden {
-    display: flex;
-  }
-}
