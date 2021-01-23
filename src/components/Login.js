@@ -9,7 +9,7 @@ import InfoTooltip from "./InfoTooltip";
 import ValidationField from './ValidationField';
 import Form from './Form';
 
-import Api_auth from "../utils/Api_auth";
+import Api_auth from "../utils/api_auth";
 
 import headerLogo from "../images/logo.svg";
 
@@ -46,26 +46,19 @@ function Login({ handleLogin }) {
     }, [inputValidity])
 
     const history = useHistory();
-    const [isReadyForSubmit,setReadyForSubmit] = React.useState(false)
+    const [isReadyForSubmit, setReadyForSubmit] = React.useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
         setReadyForSubmit(false)
         if (!isFormValid) {
             return
         }
-
-        Api_auth.authUser({
-            email: currentLogin,
-            password: currentPassword
-        }).then((res) => {
-            handleLogin(res)
-            history.push('/')
-        }).catch((err) => {
-            setPopupMsg(statusErrMsg[err.status] || "Возникла неизвестная ошибка")
-            setStatusPopupOpen(true)
-            console.log(err)
-        })
-    },[isReadyForSubmit])
+        handleLogin({ currentLogin, currentPassword })
+            .catch((err) => {
+                setPopupMsg(statusErrMsg[err.status] || "Возникла неизвестная ошибка")
+                setStatusPopupOpen(true)
+            })
+    }, [isReadyForSubmit])
 
     return (
         <>

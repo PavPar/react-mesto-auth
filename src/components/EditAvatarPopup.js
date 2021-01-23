@@ -33,7 +33,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateUrl }) {
                 <label
                     htmlFor="popup__input-title"
                     className="popup__errmsg"
-                    id="popup__input-avatar-link-errmsg"
+                    id="popup__input-avatar-link"
                 ></label>
             </>)}
         ></PopupWithForm>

@@ -4,7 +4,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { Link, withRouter } from 'react-router-dom';
 import Header from "./Header";
 import headerLogo from "../images/logo.svg";
-import Api_auth from "../utils/Api_auth"
+import Api_auth from "../utils/api_auth"
 
 import Form from './Form';
 import ValidationField from './ValidationField';

@@ -1,21 +1,29 @@
 import React, { useEffect } from "react";
-import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, BrowserRouter, useHistory } from 'react-router-dom';
 import Mesto from "./Mesto";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
-import Api_auth from "../utils/Api_auth";
+import Api_auth from "../utils/api_auth";
 
 
 function App() {
-    const [loggedIn, changeLoggedIn] = React.useState(()=>{
+    const [loggedIn, changeLoggedIn] = React.useState(() => {
         return localStorage.getItem('jwt')
     });
 
-    const [userInfo,setUserInfo] = React.useState({});
+    const [userInfo, setUserInfo] = React.useState({});
+    
+    const history = useHistory();
 
-    function handleLogin(res) {
+    function handleLogin({currentLogin,currentPassword}) {
         changeLoggedIn(true);
+        return Api_auth.authUser({
+            email: currentLogin,
+            password: currentPassword
+        }).then((res) => {
+            history.push('/')
+        })
     }
 
     function handleLogout() {
@@ -31,7 +39,7 @@ function App() {
             Api_auth.checkToken(jwt)
                 .then((res) => {
                     setUserInfo({
-                        email:res.data.email
+                        email: res.data.email
                     })
                     changeLoggedIn(true);
                 })
@@ -42,7 +50,7 @@ function App() {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         handleTokenCheck()
     }, [])
 
