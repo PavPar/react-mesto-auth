@@ -14,13 +14,4 @@
     background: no-repeat;
     background-image: url(../../../images/menu.svg);
   }
-
-  .header__menu-close{
-    width: 30px;
-    height: 30px;
-    bottom: 20px;
-    transform: rotate(45deg);
-    background-image: url(../../../images/plus.svg);
-  }
-
 }

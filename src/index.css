@@ -5,6 +5,7 @@
 /*Header*/
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/_type/header_type-nav.css);
+@import url(./blocks/header/__menu/_type/header__menu_type-close.css);
 /*NavBar*/
 @import url(./blocks/navbar/navbar.css);
 @import url(./blocks/navbar/_visibility/navbar_visibility-hidden.css);

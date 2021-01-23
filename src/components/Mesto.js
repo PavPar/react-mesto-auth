@@ -123,7 +123,7 @@ export default function Mesto({ userInfo, handleLogout }) {
                 </NavBar>
 
                 <button
-                    className={`header__menu ${isNavBarVisible&&"header__menu-close"}`}
+                    className={`header__menu ${isNavBarVisible&&"header__menu_type-close"}`}
                     onClick={() => {
                         setNavBarVisible(!isNavBarVisible)
                     }} />
