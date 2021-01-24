@@ -8,26 +8,21 @@ import Api_auth from "../utils/api_auth";
 
 
 function App() {
-    const [loggedIn, changeLoggedIn] = React.useState(() => {
-        return localStorage.getItem('jwt')
-    });
+
 
     const [userInfo, setUserInfo] = React.useState({});
-    
-    const history = useHistory();
 
-    function handleLogin({currentLogin,currentPassword}) {
+
+    function handleLogin({ currentLogin, currentPassword }) {
         changeLoggedIn(true);
         return Api_auth.authUser({
             email: currentLogin,
             password: currentPassword
-        }).then((res) => {
-            history.push('/')
         })
     }
 
-    function handleRegiser({currentLogin,currentPassword}){
-        Api_auth.registerUser({
+    function handleRegiser({ currentLogin, currentPassword }) {
+        return Api_auth.registerUser({
             email: currentLogin,
             password: currentPassword
         })
@@ -39,28 +34,29 @@ function App() {
     }
 
     function handleTokenCheck() {
-
         if (localStorage.getItem('jwt')) {
             const jwt = localStorage.getItem('jwt');
 
-            Api_auth.checkToken(jwt)
+            return Api_auth.checkToken(jwt)
                 .then((res) => {
                     setUserInfo({
                         email: res.data.email
                     })
-                    changeLoggedIn(true);
+                    // changeLoggedIn(true);
+                    return true;
                 })
                 .catch((err) => {
                     console.log(err);
-                    changeLoggedIn(false);
+                    // changeLoggedIn(false);
+                    return false;
                 });
         }
+        return false
     }
 
-    useEffect(() => {
-        handleTokenCheck()
-    }, [])
-
+    const [loggedIn, changeLoggedIn] = React.useState(() => {
+        return handleTokenCheck()
+    });
 
     return (
         <BrowserRouter>
@@ -78,7 +74,7 @@ function App() {
                     <Login handleLogin={handleLogin} />
                 </Route>
                 <Route path="/sign-up">
-                    <Register handleRegiser={handleRegiser} />
+                    <Register handleRegister={handleRegiser} />
                 </Route>
                 <Route exact path="/">
                     {loggedIn ? <Redirect to="/mesto" /> : <Redirect to="/sign-up" />}

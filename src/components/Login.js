@@ -54,7 +54,11 @@ function Login({ handleLogin }) {
             return
         }
         handleLogin({ currentLogin, currentPassword })
+        .then((res) => {
+            history.push('/')
+        })
             .catch((err) => {
+                console.log(err)
                 setPopupMsg(statusErrMsg[err.status] || "Возникла неизвестная ошибка")
                 setStatusPopupOpen(true)
             })
