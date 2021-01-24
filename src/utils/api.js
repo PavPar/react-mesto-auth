@@ -4,9 +4,8 @@ class Api {
     }
 
     //Вывод сообщения об ошибке в консоль
-    errorMsgHandler({ status, statusText }) {
-        console.log('Status : ' + status)
-        console.log('MSG : ' + statusText)
+    errorMsgHandler(err) {
+        console.log(err)
     }
 
     //Произвести обращение к серверу без тела запроса

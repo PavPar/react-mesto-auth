@@ -26,6 +26,13 @@ function App() {
         })
     }
 
+    function handleRegiser({currentLogin,currentPassword}){
+        Api_auth.registerUser({
+            email: currentLogin,
+            password: currentPassword
+        })
+    }
+
     function handleLogout() {
         localStorage.removeItem('jwt')
         changeLoggedIn(false);
@@ -71,7 +78,7 @@ function App() {
                     <Login handleLogin={handleLogin} />
                 </Route>
                 <Route path="/sign-up">
-                    <Register />
+                    <Register handleRegiser={handleRegiser} />
                 </Route>
                 <Route exact path="/">
                     {loggedIn ? <Redirect to="/mesto" /> : <Redirect to="/sign-up" />}

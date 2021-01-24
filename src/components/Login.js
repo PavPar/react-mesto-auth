@@ -67,8 +67,6 @@ function Login({ handleLogin }) {
             </Header>
             <section className="auth">
                 <Form
-                    name="card"
-
                     title="Вход"
                     btnText="Войти"
                     onSubmit={(event) => {
@@ -80,7 +78,7 @@ function Login({ handleLogin }) {
                     isButtonActive={true}
                 >
                     <ValidationField
-                        id="form__input-card-title"
+                        id="user_auth_email"
                         type="email"
                         placeholder="Email"
                         name="email"
@@ -97,7 +95,7 @@ function Login({ handleLogin }) {
                         input={emailRef}
                     />
                     <ValidationField
-                        id="form__input-card-title"
+                        id="user_auth_password"
                         type="password"
                         placeholder="Пароль"
                         name="password"

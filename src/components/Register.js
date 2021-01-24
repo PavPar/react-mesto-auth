@@ -4,13 +4,12 @@ import ReactTestUtils from 'react-dom/test-utils';
 import { Link, withRouter } from 'react-router-dom';
 import Header from "./Header";
 import headerLogo from "../images/logo.svg";
-import Api_auth from "../utils/api_auth"
 
 import Form from './Form';
 import ValidationField from './ValidationField';
 import InfoTooltip from './InfoTooltip';
 
-function Register() {
+function Register({handleRegister}) {
     const [StatusPopupOpen, setStatusPopupOpen] = React.useState(false);
 
     function closeAllPopups() {
@@ -46,10 +45,7 @@ function Register() {
             return
         }
 
-        Api_auth.registerUser({
-            email: currentLogin,
-            password: currentPassword
-        })
+        handleRegister({currentLogin,currentPassword})
             .then((res) => {
                 setAuthStatus(true);
 
@@ -71,8 +67,6 @@ function Register() {
             </Header>
             <section className="auth">
                 <Form
-                    name="card"
-
                     title="Регистрация"
                     btnText="Зарегестрироваться"
                     onSubmit={(event) => {
@@ -90,7 +84,7 @@ function Register() {
                     isButtonActive={true}
                 >
                     <ValidationField
-                        id="form__input-card-title"
+                        id="user_register_email"
                         type="email"
                         placeholder="Email"
                         name="email"
@@ -106,7 +100,7 @@ function Register() {
                         input={emailRef}
                     />
                     <ValidationField
-                        id="form__input-card-title"
+                        id="user_register_password"
                         type="password"
                         placeholder="Пароль"
                         name="password"

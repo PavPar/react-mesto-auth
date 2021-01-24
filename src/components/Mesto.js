@@ -55,14 +55,14 @@ export default function Mesto({ userInfo, handleLogout }) {
         api.changeUserInfo(newUserData).then((res) => {
             setUserData(res)
             closeAllPopups();
-        })
+        }).catch(api.errorMsgHandler)
     }
 
     function handleAvatarUpdate(newAvatar) {
         api.changeUserAvatar(newAvatar).then((res) => {
             setUserData(res);
             closeAllPopups();
-        })
+        }).catch(api.errorMsgHandler)
     }
 
     React.useEffect(() => {
@@ -75,9 +75,7 @@ export default function Mesto({ userInfo, handleLogout }) {
                 setUserData(userData);
                 setCards(cards);
             })
-            .catch((err) => {
-                console.log(err);
-            })
+            .catch(api.errorMsgHandler)
 
     }, [])
 
@@ -123,7 +121,7 @@ export default function Mesto({ userInfo, handleLogout }) {
                 </NavBar>
 
                 <button
-                    className={`header__menu ${isNavBarVisible&&"header__menu_type-close"}`}
+                    className={`header__menu ${isNavBarVisible && "header__menu_type-close"}`}
                     onClick={() => {
                         setNavBarVisible(!isNavBarVisible)
                     }} />
