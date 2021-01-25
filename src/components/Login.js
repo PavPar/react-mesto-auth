@@ -9,8 +9,6 @@ import InfoTooltip from "./InfoTooltip";
 import ValidationField from './ValidationField';
 import Form from './Form';
 
-import Api_auth from "../utils/api_auth";
-
 import headerLogo from "../images/logo.svg";
 
 function Login({ handleLogin }) {

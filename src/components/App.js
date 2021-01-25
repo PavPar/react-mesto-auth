@@ -1,28 +1,26 @@
-import React, { useEffect } from "react";
-import { Route, Switch, Redirect, BrowserRouter, useHistory } from 'react-router-dom';
+import React from "react";
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Mesto from "./Mesto";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
-import Api_auth from "../utils/api_auth";
+import ApiAuth from "../utils/apiAuth";
 
 
-function App() {
-
-
+function App(props) {
+    const history = useHistory();
     const [userInfo, setUserInfo] = React.useState({});
-
 
     function handleLogin({ currentLogin, currentPassword }) {
         changeLoggedIn(true);
-        return Api_auth.authUser({
+        return ApiAuth.authUser({
             email: currentLogin,
             password: currentPassword
         })
     }
 
     function handleRegiser({ currentLogin, currentPassword }) {
-        return Api_auth.registerUser({
+        return ApiAuth.registerUser({
             email: currentLogin,
             password: currentPassword
         })
@@ -37,17 +35,16 @@ function App() {
         if (localStorage.getItem('jwt')) {
             const jwt = localStorage.getItem('jwt');
 
-            return Api_auth.checkToken(jwt)
+            return ApiAuth.checkToken(jwt)
                 .then((res) => {
                     setUserInfo({
                         email: res.data.email
                     })
-                    // changeLoggedIn(true);
+                    history.push('/mesto')
                     return true;
                 })
                 .catch((err) => {
                     console.log(err);
-                    // changeLoggedIn(false);
                     return false;
                 });
         }
@@ -59,7 +56,6 @@ function App() {
     });
 
     return (
-        <BrowserRouter>
             <Switch>
                 <ProtectedRoute
                     loggedIn={loggedIn}
@@ -80,7 +76,6 @@ function App() {
                     {loggedIn ? <Redirect to="/mesto" /> : <Redirect to="/sign-up" />}
                 </Route>
             </Switch>
-        </BrowserRouter>
     );
 }
 
