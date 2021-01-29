@@ -46,6 +46,7 @@ class Api {
 
     //Получить информацию о пользователе
     getUserInfo() {
+        console.log(this._options.headers)
         return this._accessServer("GET", "/users/me");
     }
 
@@ -80,7 +81,7 @@ class Api {
             this.likeCard(cardId) :
             this.dislikeCard(cardId)
     }
-    
+
     //Удалить карточку
     deleteCard(cardId) {
         return this._accessServer("DELETE", "/cards/" + cardId)
@@ -93,9 +94,9 @@ class Api {
 }
 
 export default new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
+    baseUrl: 'https://api.paramonoff.students.nomoredomains.icu',
     headers: {
-        authorization: '967deb70-9a4e-4589-809b-0ac8252fbe07',
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-Type': 'application/json'
     }
 });;

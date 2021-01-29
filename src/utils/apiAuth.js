@@ -10,7 +10,7 @@ class Api_auth {
     }
 
     //Произвести обращение к серверу без тела запроса
-    _accessServer(method, url,headers=this._options.headers) {
+    _accessServer(method, url, headers = this._options.headers) {
         return fetch(this._options.baseUrl + url, {
             headers: headers,
             method: method
@@ -27,7 +27,7 @@ class Api_auth {
     }
 
     //Отправка данных на сервер с телом запроса
-    _sendDataToServer(method, url,bodyObj, headers=this._options.headers) {
+    _sendDataToServer(method, url, bodyObj, headers = this._options.headers) {
         return fetch(this._options.baseUrl + url, {
             method: method,
             headers: headers,
@@ -40,27 +40,27 @@ class Api_auth {
         })
     }
 
-    registerUser({email,password}){
-        return this._sendDataToServer("POST","/signup",{email,password})
+    registerUser({ email, password }) {
+        return this._sendDataToServer("POST", "/signup", { email, password })
     }
 
-    authUser({email,password}){
-        return this._sendDataToServer("POST","/signin",{email,password})
-        .then((data)=>{
-            localStorage.setItem('jwt', data.token);
-            return data;
-        })
+    authUser({ email, password }) {
+        return this._sendDataToServer("POST", "/signin", { email, password })
+            .then((data) => {
+                localStorage.setItem('jwt', data.token);
+                return data;
+            })
     }
 
-    checkToken(token){
-        return this._accessServer("GET","/users/me",{
+    checkToken(token) {
+        return this._accessServer("GET", "/users/me", {
             "Content-Type": "application/json",
-            "Authorization" : `Bearer ${token}`
+            authorization: `Bearer ${token}`
         })
     }
 }
 
 export default new Api_auth({
-    baseUrl: 'https://auth.nomoreparties.co',
-    headers: {"Content-Type": "application/json"}
+    baseUrl: 'https://api.paramonoff.students.nomoredomains.icu',
+    headers: { "Content-Type": "application/json" }
 });;
