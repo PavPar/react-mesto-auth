@@ -40,7 +40,7 @@ function App(props) {
                     setUserInfo({
                         email: res.data.email
                     })
-                    history.push('/mesto')
+                    history.push('/')
                     return true;
                 })
                 .catch((err) => {
@@ -56,26 +56,23 @@ function App(props) {
     });
 
     return (
-            <Switch>
-                <ProtectedRoute
-                    loggedIn={loggedIn}
-                    path="/mesto"
-                    component={Mesto}
-                    redirectTo="./sign-up"
-                    handleLogout={handleLogout}
-                    userInfo={userInfo}
-                >
-                </ProtectedRoute>
-                <Route path="/sign-in">
-                    <Login handleLogin={handleLogin} />
-                </Route>
-                <Route path="/sign-up">
-                    <Register handleRegister={handleRegiser} />
-                </Route>
-                <Route exact path="/">
-                    {loggedIn ? <Redirect to="/mesto" /> : <Redirect to="/sign-up" />}
-                </Route>
-            </Switch>
+        <Switch>
+            <Route path="/sign-in">
+                <Login handleLogin={handleLogin} />
+            </Route>
+            <Route path="/sign-up">
+                <Register handleRegister={handleRegiser} />
+            </Route>
+            <ProtectedRoute
+                loggedIn={loggedIn}
+                path="/"
+                component={Mesto}
+                redirectTo="./sign-up"
+                handleLogout={handleLogout}
+                userInfo={userInfo}
+            >
+            </ProtectedRoute>
+        </Switch>
     );
 }
 
