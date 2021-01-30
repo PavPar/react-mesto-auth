@@ -3,6 +3,7 @@
     height: 120px;
     border-radius: 50%;
     transition: .2s ease-out filter;
+    object-fit: cover;
 }
 
 .profile__avatar:hover{
