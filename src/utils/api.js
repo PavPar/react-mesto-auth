@@ -46,7 +46,6 @@ class Api {
 
     //Получить информацию о пользователе
     getUserInfo() {
-        console.log(this._options.headers)
         return this._accessServer("GET", "/users/me");
     }
 
@@ -68,7 +67,7 @@ class Api {
 
     //Поставить лайк карточке
     likeCard(cardId) {
-        return this._accessServer("PUT", "/cards/likes/" + cardId)
+        return this._accessServer("PUT", `/cards/likes/` + cardId)
     }
 
     //Поставить дизлайк карточке
@@ -90,6 +89,10 @@ class Api {
     //Изменить аватар пользователя
     changeUserAvatar(newAvatar) {
         return this._sendDataToServer("PATCH", "/users/me/avatar", newAvatar)
+    }
+
+    resetToken(){
+        this._options.headers.authorization = `Bearer ${localStorage.getItem('jwt')}`
     }
 }
 

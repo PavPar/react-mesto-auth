@@ -38,7 +38,7 @@ function App(props) {
             return ApiAuth.checkToken(jwt)
                 .then((res) => {
                     setUserInfo({
-                        email: res.data.email
+                        email: res.email
                     })
                     history.push('/')
                     return true;
@@ -72,6 +72,9 @@ function App(props) {
                 userInfo={userInfo}
             >
             </ProtectedRoute>
+            <Route>
+                <Redirect to="/" />
+            </Route>
         </Switch>
     );
 }

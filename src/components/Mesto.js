@@ -66,12 +66,16 @@ export default function Mesto({ userInfo, handleLogout }) {
     }
 
     React.useEffect(() => {
+        api.resetToken();
         Promise.all([
             api.getUserInfo(),
             api.getInitialCards()
         ])
             .then((values) => {
                 const [userData, cards] = values;
+                console.log(cards);
+                console.log(userData);
+
                 setUserData(userData);
                 setCards(cards);
             })
@@ -80,7 +84,7 @@ export default function Mesto({ userInfo, handleLogout }) {
     }, [])
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(id => id === currentUser._id);
 
         api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
             const newCards = cards.map((c) => c._id === card._id ? newCard : c);
@@ -116,7 +120,7 @@ export default function Mesto({ userInfo, handleLogout }) {
             <Header src={headerLogo} type="header_type-nav">
                 <NavBar
                     isVisible={isNavBarVisible}>
-                    <p className="navbar__info">{userInfo.email}</p>
+                    <p className="navbar__info">{currentUser.email}</p>
                     <button to="./sign-up" className="navbar__link" onClick={handleLogout}>Выйти</button>
                 </NavBar>
 

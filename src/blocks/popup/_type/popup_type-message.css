@@ -5,10 +5,11 @@
     justify-content: space-between;
     padding: 60px 36px;
     box-sizing: border-box;
+    margin-top: 10vh auto;
 }
 
 @media screen and (max-width:535px) {
-    .popup__window {
+    .popup_type-message{
         max-width: calc(320px - (20px * 2));
         padding: 50px 18px;
     }

@@ -44,7 +44,6 @@ function Register({handleRegister}) {
         if (!isFormValid) {
             return
         }
-
         handleRegister({currentLogin,currentPassword})
             .then((res) => {
                 setAuthStatus(true);
@@ -58,6 +57,8 @@ function Register({handleRegister}) {
                 setStatusPopupOpen(true);
                 return res
             })
+        setFormValidity(false)
+
     }, [isReadyForSubmit])
 
     return (
@@ -78,7 +79,10 @@ function Register({handleRegister}) {
                         if (!inputValidity.some((input) => !input)) {
                             setFormValidity(true)
                             setReadyForSubmit(true)
+                        }else{
                         }
+                            
+
 
                     }}
                     isButtonActive={true}
